@@ -39,7 +39,7 @@ from sklearn.pipeline import Pipeline
 
 
 def main():
-    with open("data/essay-corpus.json", encoding="utf8") as f:
+    with open("essay-corpus.json", encoding="utf8") as f:
         d = json.load(f)
     df = pd.json_normalize(d, 'claims', ['id', 'confirmation_bias'],
                            record_prefix='claims_')
@@ -99,7 +99,7 @@ def main():
     result.columns = ['id', 'change', 'text', 'ids', 'sentiment']
     result = result[['id', 'change', 'text', 'sentiment', ]]
     dk = pd.read_csv(
-        r"data/train-test-split.csv", sep=';')
+        r"train-test-split.csv", sep=';')
     dk['ID'] = dk['ID'].str.replace('essay', '')
     tr = dk[dk['SET'] == "TRAIN"]
     te = dk[dk['SET'] == "TEST"]
